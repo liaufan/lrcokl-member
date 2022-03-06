@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:lrcokl/get-initializer.dart';
+import 'package:lrcokl/splashscreen.dart';
 import 'package:lrcokl/ui/home.dart';
 
 void main() {
+  GetInitializer().dependencies();
   runApp(const MyApp());
 }
 
@@ -11,12 +15,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Lee Rubber Chinese Orchestra 吉隆坡南益校友会华乐团',
       theme: ThemeData(
         primarySwatch: white,
       ),
-      home: Home(),
+      initialRoute: "/",
+      getPages: [
+        GetPage(
+          name: "/",
+          page: () => HomeScreen(),
+          transition: Transition.noTransition,
+        ),
+      ],
       // debugShowCheckedModeBanner: false,
     );
   }
