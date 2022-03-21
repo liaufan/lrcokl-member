@@ -1,10 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:lrcokl/get-initializer.dart';
-import 'package:lrcokl/splashscreen.dart';
 import 'package:lrcokl/ui/home.dart';
+import 'package:lrcokl/ui/login.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyBj8ZUjuoTvqxltfPx1svADCtMZ05FKVLY",
+          appId: "1:1081503252980:web:6baa414dfe8e0129c3b9a1",
+          messagingSenderId: "1081503252980",
+          projectId: "lrcokl-6dee6",
+          authDomain: "lrcokl-6dee6.firebaseapp.com",
+          storageBucket: "lrcokl-6dee6.appspot.com",
+          measurementId: "G-4T8VG2DRQR"));
   GetInitializer().dependencies();
   runApp(const MyApp());
 }
@@ -24,6 +35,11 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: "/",
+          page: () => LoginScreen(),
+          transition: Transition.noTransition,
+        ),
+        GetPage(
+          name: "/home",
           page: () => HomeScreen(),
           transition: Transition.noTransition,
         ),
